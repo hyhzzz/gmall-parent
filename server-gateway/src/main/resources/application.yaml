@@ -1,0 +1,22 @@
+#后台管理发请求都是给网关ip发的
+server:
+  port: 80
+
+spring:
+  cloud:
+    sentinel:
+      enabled: true
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"  #允许所有来源访问
+            allowedMethods: "*"  #允许所有请求方式跨域访问
+            allowedHeaders: "*"  #允许任意请求头跨域
+            allowCredentials: true #允许Cookie等一些安全标识头跨域
+      routes:
+        - id: product_route
+          #nginx转发来的请求，来到网关 所有来到我网关的以/admin/product/开头的所有请求，都负载均衡转到service-product服务
+          uri: lb://service-product
+          predicates:
+            - Path=/admin/product/**
