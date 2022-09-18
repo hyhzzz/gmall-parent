@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @author coderhyh
  * @create 2022-09-18 7:04
@@ -27,6 +29,19 @@ public class TrademarkController {
 
     @Autowired
     BaseTrademarkService baseTrademarkService;
+
+
+
+    /**
+     * 获取所有品牌列表
+     * @return
+     */
+    @GetMapping("/baseTrademark/getTrademarkList")
+    public Result baseTrademarkList() {
+        List<BaseTrademark> list = baseTrademarkService.list();
+
+        return Result.ok(list);
+    }
 
     @GetMapping("/baseTrademark/{page}/{limit}")
     public Result baseTrademark(@PathVariable("page") Long page,

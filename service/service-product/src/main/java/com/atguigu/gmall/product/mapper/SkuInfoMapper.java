@@ -11,6 +11,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface SkuInfoMapper extends BaseMapper<SkuInfo> {
 
+
+    //更新sku的上下架状态
+    void updateSaleStatus(Long skuId, int status);
 }
 
 

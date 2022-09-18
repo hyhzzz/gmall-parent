@@ -23,7 +23,6 @@ import java.util.List;
 @RestController //我是一个控制器，并且所有方法上返回的数据是对象，都以json响应回去
 @RequestMapping("/admin/product")
 public class CategoryController {
-
     @Autowired
     BaseCategory1Service baseCategory1Service;
 
